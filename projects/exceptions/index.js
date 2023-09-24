@@ -21,23 +21,22 @@
    isAllTrue([100, 2, 3, 4, 5], n => n < 10) // вернет false (потому что как минимум первый элемент больше 10)
  */
 function isAllTrue(array, fn) {
-
-    if (!Array.isArray(array) || array.length === 0) {
-      throw new Error('empty array');
-    }
-  
-    if (typeof fn !== 'function') {
-      throw new Error('fn is not a function');
-    }
-  
-    for (const el of array) {
-      if (!fn(el)) {
-        return false;
-      }
-    }
-  
-  return true;
+  if (!Array.isArray(array) || array.length === 0) {
+    throw new Error('empty array');
   }
+
+  if (typeof fn !== 'function') {
+    throw new Error('fn is not a function');
+  }
+
+  for (const el of array) {
+    if (!fn(el)) {
+      return false;
+    }
+  }
+
+  return true;
+}
 /*
  Задание 2:
 
@@ -59,7 +58,6 @@ function isAllTrue(array, fn) {
    isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false (потому что в массиве нет ни одного элемента больше 20)
  */
 function isSomeTrue(array, fn) {
-
   if (!Array.isArray(array) || array.length === 0) {
     throw new Error('empty array');
   }
@@ -91,7 +89,7 @@ function isSomeTrue(array, fn) {
  */
 function returnBadArguments(fn, ...args) {
   if (typeof fn !== 'function') {
-    throw new Error('fn is not function');
+    throw new Error('fn is not a function');
   }
 
   const badArgs = [];
@@ -99,12 +97,12 @@ function returnBadArguments(fn, ...args) {
   for (const arg of args) {
     try {
       fn(arg);
-    } catch(e) {
+    } catch (e) {
       badArgs.push(arg);
     }
   }
 
-return badArgs;
+  return badArgs;
 }
 
 /*
@@ -133,32 +131,32 @@ return badArgs;
    console.log(calc.div(2, 2)); // выведет 2.5 (10 / 2 / 2)
    console.log(calc.div(2, 0)); // выбросит исключение, потому что один из аргументов равен 0
  */
-function calculator(number) {
+function calculator(number = 0) {
   if (typeof number !== 'number') {
-    throw new Error('number is not a number');
+      throw new Error('number is not a number');
   }
 
-    return {
-      sum(...args) {
-        return args.reduce((all, current) => all + current, number);
-      },
-      dif(...args) {
-        return args.reduce((all, current) => all - current, number);
-      },
+  return {
+    sum(...args) {
+      return args.reduce((all, current) => all + current, number);
+    },
 
-      div(...args) {
-        if (args.some(a => a === 0)) {
-          throw new Error('division by 0');
-        }
+    dif(...args) {
+      return args.reduce((all, current) => all - current, number);
+    },
 
-        return args.reduce((all, current) =>  current, number);
-      },
-      
-      mul(...args) {
-        return args.reduce((all, current) => all * current, number);
+    div(...args) {
+      if (args.some((a) => a === 0)) {
+        throw new Error('division by 0');
       }
-    }
 
+      return args.reduce((all, current) => all / current, number);
+    },
+
+    mul(...args) {
+      return args.reduce((all, current) => all * current, number);
+    },
+  };
 }
 
 /* При решении задач, постарайтесь использовать отладчик */

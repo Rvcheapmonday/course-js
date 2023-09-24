@@ -11,7 +11,7 @@
  */
 function forEach(array, fn) {
   for (const [ix, el] of array.entries()) {
-    fn(el,ix,array);
+    fn(el, ix, array);
   }
 }
 
@@ -26,10 +26,10 @@ function forEach(array, fn) {
    console.log(newArray); // выведет [1, 4, 9]
  */
 function map(array, fn) {
-  const newArray =[];
+  const newArray = [];
 
-  for(const [ix, el] of array.entries()) {
-    newArray.push(fn(el,ix,array));
+  for (const [ix, el] of array.entries()) {
+    newArray.push(fn(el, ix, array));
   }
 
   return newArray;
@@ -54,9 +54,8 @@ function reduce(array, fn, initial) {
     all = array[0];
   }
 
-
   for (let i = startIndex; i < array.length; i++) {
-    all = fn(all, array[i], i, array)
+    all = fn(all, array[i], i, array);
   }
 
   return all;
@@ -72,7 +71,7 @@ function reduce(array, fn, initial) {
    console.log(keys) // выведет ['NAME', 'LASTNAME']
  */
 function upperProps(obj) {
-  return Object.keys(obj).map(k => k.toUpperCase())
+  return Object.keys(obj).map((k) => k.toUpperCase());
 }
 
 export { forEach, map, reduce, upperProps };
