@@ -145,13 +145,15 @@ function calculator(number) {
       dif(...args) {
         return args.reduce((all, current) => all - current, number);
       },
+
       div(...args) {
         if (args.some(a => a === 0)) {
           throw new Error('division by 0');
         }
 
-        return args.reduce((all, current) => / current, number);
+        return args.reduce((all, current) =>  current, number);
       },
+      
       mul(...args) {
         return args.reduce((all, current) => all * current, number);
       }
