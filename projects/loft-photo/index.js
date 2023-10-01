@@ -1,3 +1,11 @@
+import pages from './pages';
+import('./styles.css');
+
+const pageNames = ['login', 'main', 'profile'];
+
+document.addEventListener('click', () => {
+});
+
 export default {
   getRandomElement(array) {
     if (!array.length) {
@@ -17,3 +25,8 @@ export default {
     return {friend, url: photo.url };
   },
 };
+
+document.addEventListener('click', () => {
+  const pageName = model.getRandomElement(pageNames);
+  pages.openPage(pageName);
+});
