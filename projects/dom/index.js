@@ -14,6 +14,7 @@ function createDivWithText(text) {
   const div = document.createElement('div');
   div.textContent = text;
   return div;
+  
 }
 
 /*
@@ -48,16 +49,16 @@ function prepend(what, where) {
    findAllPSiblings(document.body) // функция должна вернуть массив с элементами div и span т.к. следующим соседом этих элементов является элемент с тегом P
  */
 function findAllPSiblings(where) {
-  const nextP = [];
+    const nextP = [];
 
-  for (const el of where.children) {
-    if (el.nextElementSibling && el.nextElementSibling.tagName === 'P') {
-      nextP.push(el);
+    for (const el of where.children) {
+      if (el.nextElementSibling && el.nextElementSibling.tagName === 'P') {
+        nextP.push(el);
+      }
     }
-  }
 
-  return nextP;
-}
+    return nextP;
+  }
 
 /*
  Задание 4:
@@ -154,7 +155,7 @@ function collectDOMStat(root) {
             stat.classes[className] = 1;
           }
         }
-
+        
         scan(child);
       }
     }
