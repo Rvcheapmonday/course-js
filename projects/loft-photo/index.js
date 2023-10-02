@@ -3,9 +3,6 @@ import('./styles.css');
 
 const pageNames = ['login', 'main', 'profile'];
 
-document.addEventListener('click', () => {
-});
-
 export default {
   getRandomElement(array) {
     if (!array.length) {
