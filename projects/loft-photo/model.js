@@ -38,6 +38,7 @@ export default {
   async init() {
     this.photoCache = {};
     this.friwnd = await this.getFriends();
+    [this.me] = await this.getUsers();
   },
 
   getFriends() {
@@ -49,7 +50,7 @@ export default {
   },
 
   callApi(method, params) {
-    params.v = params.v || '5.120';
+    params.v = params.v || '5.154';
 
     return new Promise ((resolve, reject) => {
       VK.ap(method,params, (response) => {
@@ -90,6 +91,22 @@ export default {
     const size = photo.sizes.find((size) => size.width >= 360);
 
     return size;
+  },
+
+  getUsers(ids) {
+    const params = {
+      fields: ['photo_50', 'photo_100'],
+    };
+
+    if(ids) {
+      params.user_ids = ids;
+    }
+
+    return this.callApi('users.get', params);
+  },
+
+  logout() {
+    return new Promise((resolve) => VK.Auth.revokeGrants(resolve));
   },
 };
 
