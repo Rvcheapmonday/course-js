@@ -9,17 +9,17 @@ export default {
   },
 
   setFriendAndPhoto(friend, id, url) {
-    const photoCopm = document.querySelector('component-photo');
-    const headerPhotoComp = document.querySelector('component-header-photo');
-    const headerNameComp = document.querySelector('component-header-name');
-    const footerNameComp = document.querySelector('component-footer-photo');
+    const photoCopm = document.querySelector('.component-photo');
+    const headerPhotoComp = document.querySelector('.component-header-photo');
+    const headerNameComp = document.querySelector('.component-header-name');
+    const footerPhotoComp = document.querySelector('.component-footer-photo');
 
     this.friend = friend;
 
     headerPhotoComp.style.backgroungImage = `url('${friend.photo_50}')`;
     headerNameComp.innerText = `${friend.first_name ?? ''} ${friend.last_name ?? ''}`;
     photoComp.style.backgroundImage = `url(${url})`;
-    footerNameComp.style.backgroundImage = `url('${model.me.photo_50}')`;
+    footerPhotoComp.style.backgroundImage = `url('${model.me.photo_50}')`;
 
   },
 

@@ -7,12 +7,12 @@ export default {
 
     const photoComp = document.querySelector('.component-user-info-photo');
     const nameComp = document.querySelector('.component-user-info-name');
-    const photosComp = document.querySelector('.component-user-info-photos');
+    const photosComp = document.querySelector('.component-user-photos');
     const photos = await model.getPhotos(user.id);
 
     this.user = user;
 
-    photoComp.style.backgroundImage = `url('${model.me.photo_100}')`;
+    photoComp.style.backgroundImage = `url('${user.photo_100}')`;
     nameComp.innertext = `${user.first_name ?? ''} ${user.last_name ?? ''}`;
     photosComp.innerHTML = '';
 
@@ -27,17 +27,17 @@ export default {
         photosComp.append(element);
     }
   },
-
+ 
   handleEvents() {
 
     document
         .querySelector('.component-user-photos')
-        .add.EventListener('click', async (e) => {
+        .addEventListener('click', async (e) => {
             if (e.target.classList.contains('component-user-photo')) {
 
                 const photoId = e.target.dataset.id;
                 const friendsPhotos = await model.getPhotos(this.user.id);
-                const photo = friendsPhotos.item.find((photo) => photo.id == photoId);
+                const photo = friendsPhotos.items.find((photo) => photo.id == photoId);
                 const size = model.findSize(photo);
 
                 mainPage.setFriendAndPhoto(this.user, parseInt(photoId), size.url);
@@ -50,7 +50,7 @@ export default {
         pages.openPage('main');
     });
 
-    document.querySelector('.page-prifile-exit').addEventListener('.click', async () => {
+    document.querySelector('.page-prifile-exit').addEventListener('click', async () => {
         await model.logout();
         pages.openPage('login');
     })
